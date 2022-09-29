@@ -56,10 +56,12 @@ void configure_codec()
 int main()
 {
     init_platform();
-
     xil_printf("Starting Lab3 Framework\n\r");
     xil_printf("Calling configure_codec()..\r\n");
     configure_codec();
+	xil_printf("Note that there is a DDS in this project so that sounds can be played, but it isn't hooked to the processor\r\n");
+	xil_printf("If you want to play with it, open the vivado hardware manager and use the VIO to control it\r\n");
+	xil_printf("Even better, hook the DDS up to the processor, and control it with the commands in the code skeleton betlow\r\n");
     xil_printf("Now Entering a loop waiting for user commands...\r\n");
 
     // Flush out any old data that was in the UART from last time
