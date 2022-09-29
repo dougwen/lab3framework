@@ -152,7 +152,7 @@ begin
 	led <= i_led;
 
     i_dac_muten <= '1';
-	rst_dac_intfc <= not led_i(0);
+	rst_dac_intfc <= not i_led(0);
 
     proc_system_i: component proc_system
         port map (
