@@ -64,6 +64,9 @@ architecture Behavioral of toplevel is
     signal iic_rtl_sda_i : STD_LOGIC;
     signal iic_rtl_sda_o : STD_LOGIC;
     signal iic_rtl_sda_t : STD_LOGIC;
+	
+	signal i_led : std_logic_vector(3 downto 0);
+	signal rst_dac_intfc : std_logic;
 
     component IOBUF is
         port (
@@ -146,8 +149,10 @@ begin
     dac_bclk <= i_dac_bclk;
     dac_mclk <= i_dac_mclk;
     dac_muten <= i_dac_muten;
+	led <= i_led;
 
     i_dac_muten <= '1';
+	rst_dac_intfc <= not led_i(0);
 
     proc_system_i: component proc_system
         port map (
@@ -173,7 +178,7 @@ begin
             FIXED_IO_ps_porb => FIXED_IO_ps_porb,
             FIXED_IO_ps_srstb => FIXED_IO_ps_srstb,
             fclk_clk0 => i_fclk_clk0,
-            leds_4bits_tri_o(3 downto 0) => led(3 downto 0),
+            leds_4bits_tri_o(3 downto 0) => i_led(3 downto 0),
             sws_4bits_tri_i(3 downto 0) => sw(3 downto 0),
 
             iic_rtl_scl_i => iic_rtl_scl_i,
@@ -203,7 +208,7 @@ begin
 
     dacif : component lowlevel_dac_intfc
         port map (
-            rst => rst,
+            rst => rst_dac_intfc,
             clk125 => clk,
             data_word => i_audiosamples_axis_tdata,
             sdata => i_dac_sdata,

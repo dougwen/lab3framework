@@ -11,6 +11,7 @@
 #include "sleep.h"
 #include "xparameters.h"
 #include "xuartps.h"
+#include "xgpio_hw.h"
 
 // SSM2603 I2C address is 0011010 (0x1A) because CSB = 0 on the Zybo
 #define SSM2603_IIC_ADDR 0x1A
@@ -58,7 +59,12 @@ int main()
     init_platform();
     xil_printf("Starting Lab3 Framework\n\r");
     xil_printf("Calling configure_codec()..\r\n");
+	xil_printf("Putting DAC Interface in Reset if it isn't already\r\n"); // not strictly necessary, but it sounds nice at startup
+	XGpio_WriteReg(XPAR_DIPS_AND_LEDS_BASEADDR, XGPIO_DATA2_OFFSET	, 1);
     configure_codec();
+	xil_printf("Taking DAC Interface out of Reset\r\n"); 
+	XGpio_WriteReg(XPAR_DIPS_AND_LEDS_BASEADDR, XGPIO_DATA2_OFFSET	, 0);
+	
 	xil_printf("Note that there is a DDS in this project so that sounds can be played, but it isn't hooked to the processor\r\n");
 	xil_printf("If you want to play with it, open the vivado hardware manager and use the VIO to control it\r\n");
 	xil_printf("Even better, hook the DDS up to the processor, and control it with the commands in the code skeleton betlow\r\n");

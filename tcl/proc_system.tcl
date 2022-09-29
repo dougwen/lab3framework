@@ -228,7 +228,6 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.DATA_Has_TLAST {Not_Required} \
    CONFIG.DDS_Clock_Rate {125} \
-   CONFIG.Frequency_Resolution {0.4} \
    CONFIG.Has_ARESETn {true} \
    CONFIG.Has_Phase_Out {false} \
    CONFIG.Latency {7} \
@@ -241,7 +240,6 @@ proc create_root_design { parentCell } {
    CONFIG.Phase_Increment {Streaming} \
    CONFIG.Phase_Width {27} \
    CONFIG.S_PHASE_Has_TUSER {Not_Required} \
-   CONFIG.Spurious_Free_Dynamic_Range {90} \
  ] $dds_compiler_0
 
   # Create instance: dips_and_leds, and set properties
@@ -249,7 +247,7 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.C_ALL_INPUTS {1} \
    CONFIG.C_ALL_OUTPUTS_2 {1} \
-   CONFIG.C_DOUT_DEFAULT_2 {0x0000000A} \
+   CONFIG.C_DOUT_DEFAULT_2 {0x00000003} \
    CONFIG.C_GPIO2_WIDTH {4} \
    CONFIG.C_GPIO_WIDTH {4} \
    CONFIG.C_IS_DUAL {1} \
@@ -769,7 +767,7 @@ gpio[0]#qspi0_ss_b#qspi0_io[0]#qspi0_io[1]#qspi0_io[2]#qspi0_io[3]/HOLD_B#qspi0_
    CONFIG.C_EN_PROBE_IN_ACTIVITY {0} \
    CONFIG.C_NUM_PROBE_IN {0} \
    CONFIG.C_NUM_PROBE_OUT {3} \
-   CONFIG.C_PROBE_OUT0_INIT_VAL {0x0} \
+   CONFIG.C_PROBE_OUT0_INIT_VAL {0x1} \
    CONFIG.C_PROBE_OUT1_INIT_VAL {0x1} \
    CONFIG.C_PROBE_OUT2_INIT_VAL {0x00000400} \
    CONFIG.C_PROBE_OUT2_WIDTH {32} \
