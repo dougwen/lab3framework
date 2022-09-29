@@ -57,18 +57,18 @@ int main()
 {
     init_platform();
 
-    xil_printf("Starting Lab4 Sample\n\r");
+    xil_printf("Starting Lab3 Framework\n\r");
     xil_printf("Calling configure_codec()..\r\n");
     configure_codec();
     xil_printf("Now Entering a loop waiting for user commands...\r\n");
 
     // Flush out any old data that was in the UART from last time
-    while (XUartPs_IsReceiveData(XPAR_PS7_UART_0_BASEADDR))
-    	XUartPs_RecvByte(XPAR_PS7_UART_0_BASEADDR);
+    while (XUartPs_IsReceiveData(XPAR_PS7_UART_1_BASEADDR))
+    	XUartPs_RecvByte(XPAR_PS7_UART_1_BASEADDR);
 
     while(1) {
 
-    		char cmd = (char)XUartPs_RecvByte(XPAR_PS7_UART_0_BASEADDR);
+    		char cmd = (char)XUartPs_RecvByte(XPAR_PS7_UART_1_BASEADDR);
 
     		switch(cmd) {
 

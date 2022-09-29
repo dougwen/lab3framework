@@ -32,9 +32,7 @@ entity toplevel is
         reset_pb : in STD_LOGIC;
         led : out STD_LOGIC_VECTOR ( 3 downto 0 );
         sw : in STD_LOGIC_VECTOR ( 3 downto 0 );
-        --UART
-        uart_rxd : in STD_LOGIC;
-        uart_txd : out STD_LOGIC;
+
         --DACIF
         dac_sdata : out STD_LOGIC;
         dac_lrck : out STD_LOGIC;
@@ -122,8 +120,7 @@ architecture Behavioral of toplevel is
             FIXED_IO_ps_porb : inout STD_LOGIC;
 
             fclk_clk0 : out STD_LOGIC;
-            uart_rtl_rxd : in STD_LOGIC;
-            uart_rtl_txd : out STD_LOGIC;
+
             leds_4bits_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
             sws_4bits_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
             iic_rtl_scl_i : in STD_LOGIC;
@@ -178,8 +175,7 @@ begin
             fclk_clk0 => i_fclk_clk0,
             leds_4bits_tri_o(3 downto 0) => led(3 downto 0),
             sws_4bits_tri_i(3 downto 0) => sw(3 downto 0),
-            uart_rtl_rxd => uart_rxd,
-            uart_rtl_txd => uart_txd,
+
             iic_rtl_scl_i => iic_rtl_scl_i,
             iic_rtl_scl_o => iic_rtl_scl_o,
             iic_rtl_scl_t => iic_rtl_scl_t,
